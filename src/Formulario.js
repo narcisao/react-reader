@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import FormValidator from './FormValidator';
 
 class Formulario extends Component {
 
     constructor(props) {
         super(props);
 
+        //criamos uma instância do validador e passamos:
+        //o CAMPO que quero validar
+        //e o MÉTODO que iremos utilizar pra validar
+        this.validator = new FormValidator({
+            field:'nome',
+            method:'isEmpty'
+        });
+
+        //salvando o estado inicial
         this.stateInicial = {
             nome:'',
             vocacao:'',
@@ -17,6 +27,7 @@ class Formulario extends Component {
         this.state = this.stateInicial;
     }
 
+    //É responsável por ser o listener de eventos do botao de salvar
     inputListener = event => {
         const { name, value } = event.target;
 
@@ -25,9 +36,14 @@ class Formulario extends Component {
         })
     }
 
+    //função responsável por submeter os dados do formulário.
     submitForm = () => {
-        this.props.submitListener(this.state);
-        this.setState(this.stateInicial);
+        if(this.validator.validate(this.state)) {
+            this.props.submitListener(this.state);
+            this.setState(this.stateInicial);
+        } else { 
+            console.log('deu ruim');
+        }
     }
 
     render() {

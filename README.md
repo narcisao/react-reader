@@ -5,10 +5,11 @@ No diretório do projeto voce pode rodar:
 ### `npm start`
 
 para subir o localhost e ver o projeto.
-Abre [http://localhost:3000](http://localhost:3000) para ver no browser.
+
+Abra [http://localhost:3000](http://localhost:3000) para acessar no seu browser.
 
 A página irá atualizar automaticamente após voce salvar o projeto.<br />
-você poderá ver erros no console do eu navegador.
+Você poderá ver erros no console do eu navegador.
 
 ### `npm run build`
 
