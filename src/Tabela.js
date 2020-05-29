@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 const TableHead = () => {
     return (
@@ -26,7 +27,7 @@ const TableBody = props => {
                 <td>{linha.level}</td>
                 <td>{linha.mundo}</td>
                 <td>{linha.residencia}</td>
-                <td><button onClick = { () => { props.removePersonagem(index) }}>Remover</button></td>
+                <td><button className="btn btn-danger" onClick = { () => { props.removePersonagem(index) }}>Remover</button></td>
             </tr>
         );
     });

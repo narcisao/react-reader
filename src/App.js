@@ -70,8 +70,10 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Tabela personagens = { this.state.personagens } removePersonagem = { this.removePersonagem } />
-        <Form submitListener = { this.submitListener } />
+        <div className="container">
+          <Tabela personagens = { this.state.personagens } removePersonagem = { this.removePersonagem } />
+          <Form submitListener = { this.submitListener } />
+        </div>
       </Fragment>
     );
   }
