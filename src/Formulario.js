@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import FormValidator from './FormValidator';
+
+import PopUp from './PopUp';
 
 import './App.css';
 import './css/Formulario.css';
@@ -22,10 +25,45 @@ class Formulario extends Component {
         //criamos uma instância do validador e passamos:
         //o CAMPO que quero validar
         //e o MÉTODO que iremos utilizar pra validar
-        this.validator = new FormValidator({
-            field:'nome',
-            method:'isEmpty'
-        });
+        this.validator = new FormValidator( [
+            {
+                field:'nome',
+                method:'isEmpty',
+                validWhen: false,
+                message: 'Insira um nome correto!'
+            },
+            {
+                field:'vocacao',
+                method:'isEmpty',
+                validWhen: false,
+                message: 'Insira uma vocação correta!'
+            },
+            {
+                field:'sexo',
+                method:'isEmpty',
+                validWhen: false,
+                message: 'Insira uma identidade correta!'
+            },
+            {
+                field:'level',
+                method:'isInt',
+                args: [{min: 0, max: 9999}],
+                validWhen: true,
+                message: 'Insira um level correto!'
+            },
+            {
+                field:'mundo',
+                method:'isEmpty',
+                validWhen: false,
+                message: 'Insira um mundo correto!'
+            },
+            {
+                field:'residencia',
+                method:'isEmpty',
+                validWhen: false,
+                message: 'Insira uma residência correta!'
+            }
+        ] );
 
         //salvando o estado inicial
         this.stateInicial = {
@@ -35,6 +73,7 @@ class Formulario extends Component {
             level:'',
             mundo:'',
             residencia:'',
+            validation: this.validator.isValid()
         }
 
         this.state = this.stateInicial;
@@ -49,13 +88,26 @@ class Formulario extends Component {
         })
     }
 
-    //função responsável por submeter os dados do formulário.
+    //função responsável por submeter os dados do formulário
     submitForm = () => {
-        if(this.validator.validate(this.state)) {
+
+        const validation = this.validator.validate(this.state);
+
+        //Verifica se há erros de validação no forumlário
+        if (validation.isValid) {
             this.props.submitListener(this.state);
             this.setState(this.stateInicial);
         } else { 
-            console.log('deu ruim');
+            const {nome, vocacao, sexo, level, mundo, residencia} = validation;
+            const fields = [nome, vocacao, sexo, level, mundo, residencia];
+
+            const invalidFields = fields.filter(elemt => {
+                return elemt.isInvalid;
+            });
+
+            invalidFields.forEach(field => {
+                PopUp.showMessage('error', field.message);
+            });
         }
     }
 
