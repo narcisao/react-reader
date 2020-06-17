@@ -116,8 +116,8 @@ class Formulario extends Component {
         const { nome, vocacao, sexo, level, mundo, residencia } = this.state;
 
         return (
-            <form id="formulario">
-                <span id="header">Insira um personagem</span>
+            <form id="formulario" >
+                <div id="formulario-title" className="text-center">Insira um personagem</div>
                 <ColoredLine color="gray" />
                 <div className="row">
                     <div className="col-md-6 col-xl-6 col-sm-12 com-xs-12 ">
@@ -157,7 +157,7 @@ class Formulario extends Component {
                         <label htmlFor="level">Level</label>
                         <input
                             id="level"
-                            type="int"
+                            type="text"
                             name="level"
                             className="form-control"
                             value={level}

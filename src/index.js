@@ -2,12 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import Sobre from './Sobre';
+import Personagem from './Personagem';
+import NotFound from './NotFound';
+
 import * as serviceWorker from './serviceWorker';
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' exact={true} component={App} />
+        <Route path='/sobre' component={Sobre} />
+        <Route path='/personagem' component={Personagem} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

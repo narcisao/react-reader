@@ -1,4 +1,5 @@
 import React from 'react';
+import LinkWrapper from './LinkWrapper';
 
 import Gm from './gamemaster.gif';
 
@@ -10,22 +11,24 @@ const Header = () => {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
                 <img
                     alt=""
                     src={Gm}
                     width="30"
                     height="30"
-                    className="d-inline-block align-top"
                 />{' '}
                 React Reader
             </Navbar.Brand>
-
             <Nav>
-                <Nav.Link href="#deets">More deets</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">
-                    Dank memes
+                <Nav.Link>
+                    <LinkWrapper to='/'>Home</LinkWrapper>
+                </Nav.Link>
+                <Nav.Link>
+                    <LinkWrapper to='/personagem'>Personagem</LinkWrapper>
+                </Nav.Link>
+                <Nav.Link>
+                    <LinkWrapper to='/sobre'>Sobre</LinkWrapper>
                 </Nav.Link>
             </Nav>
 

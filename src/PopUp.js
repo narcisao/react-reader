@@ -1,36 +1,15 @@
-import React from 'react';
-
-import Toast from 'react-bootstrap/Toast';
+import M from 'materialize-css';
 
 const PopUp = {
     showMessage: (status, msg) => {
 
         if(status === "success") {
-            <div>
-                <Toast>
-                    <Toast.Header>
-                    <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                    <strong className="mr-auto">msg</strong>
-                    <small>1 segundo atrás</small>
-                    </Toast.Header>
-                    <Toast.Body>O seu formulário possui erros!</Toast.Body>
-                </Toast>
-            </div>
+            M.toast({html: msg, classes: 'green', displayLength: 2000});
         }
 
         if(status === "error") {
-            <div>
-                <Toast>
-                    <Toast.Header>
-                    <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                    <strong className="mr-auto">msg</strong>
-                    <small>1 segundo atrás</small>
-                    </Toast.Header>
-                    <Toast.Body>O seu formulário possui erros!</Toast.Body>
-                </Toast>
-            </div>
+            M.toast({html: msg, classes: 'red', displayLength: 2000});
         }
-
     }
 }
 

@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 import Header from './Header';
 import Tabela from './Tabela';
 import Form from './Formulario';
+import PopUp from './PopUp';
 
 class App extends Component {
 
-  //state com o array dos personagens
   state = {
     personagens: [
       {
@@ -26,24 +28,8 @@ class App extends Component {
         level: '500',
         mundo: 'Gentebra',
         residencia: 'thais',
-      },
-      {
-        nome: 'Genji',
-        vocacao: 'Paladin',
-        sexo: 'male',
-        level: '100',
-        mundo: 'Belobora',
-        residencia: 'thais',
-      },
-      {
-        nome: 'Genji',
-        vocacao: 'Paladin',
-        sexo: 'male',
-        level: '100',
-        mundo: 'Belobora',
-        residencia: 'thais',
       }
-    ],
+    ]
   };
 
   removePersonagem = index => {
@@ -60,17 +46,20 @@ class App extends Component {
         }),
       }
     );
+    PopUp.showMessage("error", "Personagem removido com sucesso!");
   }
 
   submitListener = personagem => {
-    this.setState({ personagens : [...this.state.personagens, personagem] })
+    this.setState({ personagens : [...this.state.personagens, personagem] });
+    PopUp.showMessage("success", "Personagem adicionado com sucesso!");
   }
 
   render () {
     return (
       <Fragment>
         <Header />
-        <div className="container">
+        <div className="container mb-10">
+          <h1>React Reader</h1>
           <Tabela personagens = { this.state.personagens } removePersonagem = { this.removePersonagem } />
           <Form submitListener = { this.submitListener } />
         </div>
