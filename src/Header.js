@@ -20,6 +20,7 @@ const Header = () => {
                 />{' '}
                 React Reader
             </Navbar.Brand>
+            //consertar isso
             <Nav>
                 <Nav.Link>
                     <LinkWrapper to='/'>Home</LinkWrapper>
